@@ -29,7 +29,7 @@ describe('Teste se o topo da aplicação contém um conjunto fixo de links de na
 describe('Verifica os direcionamentos corretos da página', () => {
   it('Testa se a aplicação é direcionada para a página inicial', () => {
     const { history } = renderWithRouter(<App />);
-    const home = screen.getByText(/home/i);
+    const home = screen.getByRole('link', { name: /home/i });
     userEvent.click(home);
     const { location } = history;
     expect(location.pathname).toBe('/');
