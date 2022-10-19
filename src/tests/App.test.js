@@ -49,4 +49,17 @@ describe('Verifica os direcionamentos corretos da página', () => {
     const { location } = history;
     expect(location.pathname).toBe('/favorites');
   });
+
+  it('Testa se a aplicação é direcionada para a página Not Found', () => {
+    const INVALID_URL = 'xablau';
+    const { history } = renderWithRouter(<App />);
+    act(() => {
+      history.push(INVALID_URL);
+    });
+    const { location } = history;
+    expect(location.pathname).toBe('/xablau');
+
+    const notFound = screen.getByText('Page requested not found');
+    expect(notFound).toBeInTheDocument();
+  });
 });
